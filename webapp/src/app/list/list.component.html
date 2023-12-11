@@ -1,21 +1,34 @@
 <a [routerLink]="['/notes/new']" class="btn btn-primary mb-3">New Note</a>
 
 <div *ngIf="notes && notes.length > 0; else noNotes">
-    <ul class="list-group">
-        <li *ngFor="let note of notes" class="list-group-item">
-            <div class="row">
-                <div class="col-md-4">
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+            <tr class="table-dark">
+                <td scope="col">
+                    Title
+                </td>
+                <td scope="col">
+                    Content
+                </td>
+                <td scope="col">
+                    Timestamp
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let note of notes">
+                <td scope="col">
                     <a [routerLink]="['/notes', note.id]">{{ note.title }}</a>
-                </div>
-                <div class="col-md-4">
+                </td>
+                <td scope="col">
                     {{ note.content }}
-                </div>
-                <div class="col-md-4">
+                </td>
+                <td scope="col">
                     {{ note.timestamp }}
-                </div>
-            </div>
-        </li>
-    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <ng-template #noNotes>
