@@ -1,8 +1,9 @@
-package service;
+package logbook.service;
 
-import domain.Note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import logbook.domain.Note;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
@@ -37,14 +38,15 @@ public class NoteService {
 
     }
 
-    public Optional<Note> findOne(Long id) {
-        return noteRepository.findById(id);
+    public Note findOne(Long id) throws Exception {
+        return noteRepository.findById(id).orElseThrow(()->new Exception());
     }
 
-    public void saveNote(Note note) {
+    public Note saveNote(Note note) {
         note.setTimestamp(LocalDateTime.now());
         noteRepository.save(note);
         this.syncAllNotes();
+        return note;
     }
 
     public void deleteNote(Long id) {
@@ -110,5 +112,17 @@ public class NoteService {
             }
         }
     }
+
+	public Note replaceNote(Note newNote, Long id) {
+	      return noteRepository.findById(id).map(note -> {
+	    	          note.setTitle(newNote.getTitle());
+	    	          note.setContent(newNote.getContent());
+	    	          return noteRepository.save(note);
+	    	        })
+	    	        .orElseGet(() -> {
+	    	          newNote.setId(id);
+	    	          return noteRepository.save(newNote);
+	    	        });
+	}
 
 }

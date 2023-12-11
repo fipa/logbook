@@ -1,4 +1,6 @@
-package domain;
+package logbook.domain;
+
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,13 +8,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "notes")
 public class Note {
 
-    @Id
+	public Note() {}
+	
+    public Note(long id, String title, LocalDateTime timestamp, String content) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.timestamp = timestamp;
+		this.content = content;
+	}
+
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;

@@ -1,4 +1,4 @@
-package domain;
+package logbook.domain;
 
 public class NoteTest {
 
