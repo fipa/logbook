@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { LogbookService } from '../logbook.service';
+import { LogbookService } from '../services/logbook.service';
 
 @Component({
   selector: 'app-list',
@@ -9,7 +9,7 @@ import { LogbookService } from '../logbook.service';
 })
 
 export class ListComponent implements OnInit{
-  data: any;
+  notes: any;
 
   constructor(private logbookService: LogbookService) {}
   
@@ -19,12 +19,8 @@ export class ListComponent implements OnInit{
 
   fetchData() {
     this.logbookService.list().subscribe((result) => {
-      this.data = result;
+      this.notes = result;
     })
-  }
-
-  getData() {
-    return this.data;
   }
 
 }

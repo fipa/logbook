@@ -15,4 +15,7 @@ export class LogbookService {
     return this.http.get<any>(this.apiUrl, { responseType: 'json'});
   }
 
+  task(id: number): Observable<any> { // TODO podria ser Task en vez de any
+    return this.http.get<any>(this.apiUrl + "/" + id, { responseType: 'json'});
+  }
 }

@@ -1,3 +1,25 @@
-<h1>Mis tareas</h1>
+<a class="btn btn-primary mb-3" href="#" data-toggle="modal" data-target="#newTaskModal">New Task</a>
 
-<p>{{ data | json }}</p>
+<div *ngIf="notes && notes.length > 0; else noTasks">
+    <ul class="list-group">
+        <li *ngFor="let note of notes" class="list-group-item">
+            <div class="row">
+                <div class="col-md-4">
+                    <a [routerLink]="['/notes', note.id]">{{ note.title }}</a>
+                </div>
+                <div class="col-md-4">
+                    {{ note.content }}
+                </div>
+                <div class="col-md-4">
+                    {{ note.timestamp }}
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<ng-template #noTasks>
+    <p>No notes available.</p>
+</ng-template>
+
+<a class="btn btn-primary mb-3" href="#" data-toggle="modal" data-target="#newTaskModal">New Task</a>

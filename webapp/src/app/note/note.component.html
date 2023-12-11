@@ -1,0 +1,17 @@
+<div *ngIf="task; else noTask">
+    <div class="row">
+        <div class="col-md-4">
+            {{ task.title }}
+        </div>
+        <div class="col-md-4">
+            {{ task.content }}
+        </div>
+        <div class="col-md-4">
+            {{ task.timestamp }}
+        </div>
+    </div>
+</div>
+
+<ng-template #noTask>
+    <p>No task selected.</p>
+</ng-template>
