@@ -10,7 +10,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class NoteService {
@@ -78,24 +80,12 @@ public class NoteService {
 
     }
 
-    public List<String> getRepeatedWords() {
-        return new ArrayList<>();
-    }
+    public Map<String, Integer> getWords(String filter, Integer repetitionFactor) {
 
-    // unused methods, needed for the repeated words feature
-
-    // returns all words repeated more than repetitionFactor times
-    List<String> getRepeatedWords(Integer repetitionFactor) {
-
-        ArrayList<String> repeatedWords = new ArrayList<>();
-
-        for (String key : dictionary.keySet()) {
-            if (dictionary.get(key) > repetitionFactor) {
-                repeatedWords.add(key);
-            }
-        }
-        return repeatedWords;
-
+    	return dictionary.entrySet().stream()
+    			.filter(entry -> filter == null || filter.equals(entry.getKey()))
+    			.filter(entry -> repetitionFactor == null || (entry.getValue() != null && entry.getValue() > repetitionFactor))
+    			.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
     private void updateDictionary() {

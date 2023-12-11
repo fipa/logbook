@@ -15,11 +15,13 @@ import logbook.service.NoteService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
@@ -137,21 +139,22 @@ public class NoteServiceTest {
 
         noteService.syncAllNotes();
 
-        List<String> topWords = noteService.getRepeatedWords(2);
+        Map<String, Integer> topWords = noteService.getWords(null, 2);
 
-        assertNotEquals(-1, topWords.indexOf("note"));
-        assertNotEquals(-1, topWords.indexOf("with"));
-        assertNotEquals(-1, topWords.indexOf("words"));
-        assertNotEquals(-1, topWords.indexOf("java"));
-
-        assertEquals(-1, topWords.indexOf("spring"));
-        assertEquals(-1, topWords.indexOf("first"));
-        assertEquals(-1, topWords.indexOf("second"));
-        assertEquals(-1, topWords.indexOf("third"));
-        assertEquals(-1, topWords.indexOf("automation"));
-        assertEquals(-1, topWords.indexOf("integration"));
-        assertEquals(-1, topWords.indexOf("any"));
-        assertEquals(-1, topWords.indexOf("more"));
+        assertNotNull(topWords.get("note"));
+        assertNotNull(topWords.get("with"));
+        assertNotNull(topWords.get("note"));
+        assertNotNull(topWords.get("words"));
+        assertNotNull(topWords.get("java"));
+        
+        assertNull(topWords.get("spring"));
+        assertNull(topWords.get("first"));
+        assertNull(topWords.get("second"));
+        assertNull(topWords.get("third"));
+        assertNull(topWords.get("automation"));
+        assertNull(topWords.get("integration"));
+        assertNull(topWords.get("any"));
+        assertNull(topWords.get("more"));
 
     }
 

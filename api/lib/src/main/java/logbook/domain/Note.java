@@ -81,7 +81,6 @@ public class Note {
         return content != null ? content.equals(note.content) : note.content == null;
     }
 
-
     @Override
     public String toString() {
         return "Note{" +
