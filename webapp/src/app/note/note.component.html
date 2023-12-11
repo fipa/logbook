@@ -1,21 +1,13 @@
-<div *ngIf="note; else noNote">
+<form (submit)="submitForm()">
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" [(ngModel)]="note.title" class="form-control">
+    </div>
 
-    <form (submit)="submitForm()">
-        <div class="form-group">
-          <label for="title">Title:</label>
-          <input type="text" id="title" name="title" [(ngModel)]="note.title" class="form-control">
-        </div>
-    
-        <div class="form-group">
-          <label for="content">Content:</label>
-          <textarea id="content" name="content" [(ngModel)]="note.content" class="form-control"></textarea>
-        </div>
-    
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-    </form>
+    <div class="form-group">
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" [(ngModel)]="note.content" class="form-control"></textarea>
+    </div>
 
-</div>
-
-<ng-template #noNote>
-    <p>No note selected.</p>
-</ng-template>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>

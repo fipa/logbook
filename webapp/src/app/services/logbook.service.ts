@@ -13,16 +13,21 @@ export class LogbookService {
 
   constructor(private http: HttpClient) { }
 
-  list(): Observable<any> { // TODO podria ser Task en vez de any
+  list(): Observable<Array<Note>> {
     return this.http.get<any>(this.apiUrl, { responseType: 'json'});
   }
 
-  note(id: number): Observable<Note> { // TODO podria ser Task en vez de any
+  note(id: number): Observable<Note> {
     return this.http.get<Note>(`${this.apiUrl}/${id}`, { responseType: 'json'});
   }
 
-  update(note: Note): Observable<Note> {
-    return this.http.put<Note>(`${this.apiUrl}/${note.id}`, note, { responseType: 'json' });
+  createOrUpdate(note: Note): Observable<Note> {
+    if (note.id) {
+      return this.http.put<Note>(`${this.apiUrl}/${note.id}`, note, { responseType: 'json' });
+    } else {
+      return this.http.post<Note>(this.apiUrl, note, { responseType: 'json'});
+    }
+    
   } 
 
 }

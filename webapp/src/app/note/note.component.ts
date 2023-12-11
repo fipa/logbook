@@ -21,9 +21,10 @@ export class NoteComponent implements OnInit{
   
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.note.id = params['id'];
-      console.log("fetching note with id ", this.note.id);
-      this.fetchData();
+      if (params['id']) {
+        this.note.id = params['id'];
+        this.fetchData();
+      }
     });
   }
 
@@ -34,7 +35,7 @@ export class NoteComponent implements OnInit{
   }
 
   submitForm(): void {
-    this.logbookService.update(this.note).subscribe(
+    this.logbookService.createOrUpdate(this.note).subscribe(
       (result) => {
         console.log('Note updated successfully:', result);
         this.router.navigate(['/']);
