@@ -9,12 +9,13 @@ import { Note } from '../models/note.model';
 })
 
 export class LogbookService {
+
   private apiUrl = "http://localhost:8080/notes";
 
   constructor(private http: HttpClient) { }
 
   list(): Observable<Array<Note>> {
-    return this.http.get<any>(this.apiUrl, { responseType: 'json'});
+    return this.http.get<any>(this.apiUrl, { responseType: 'json'})
   }
 
   note(id: number): Observable<Note> {
@@ -27,7 +28,10 @@ export class LogbookService {
     } else {
       return this.http.post<Note>(this.apiUrl, note, { responseType: 'json'});
     }
-    
-  } 
+  }
+
+  delete(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`, { responseType: 'json'});
+  }
 
 }

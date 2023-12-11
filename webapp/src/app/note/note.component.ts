@@ -29,21 +29,39 @@ export class NoteComponent implements OnInit{
   }
 
   fetchData() {
-    this.logbookService.note(this.note.id).subscribe((result) => {
-      this.note = result;
-    })
+    this.logbookService.note(this.note.id).subscribe(
+      (result) => {
+        this.note = result;
+      },
+      (error) => {
+        console.error(`Error fetching note ${this.note.id}`, error);
+      })      
   }
 
   submitForm(): void {
     this.logbookService.createOrUpdate(this.note).subscribe(
       (result) => {
         console.log('Note updated successfully:', result);
-        this.router.navigate(['/']);
       },
       (error) => {
         console.error('Error updating note:', error);
       }
     );
+    this.router.navigate(['/']);
+  }
+
+  deleteNote(): void {
+    if (confirm('Are you sure you want to delete this note?')) {
+      this.logbookService.delete(this.note.id).subscribe(
+        () => {
+          console.log('Note deleted successfully');
+          this.router.navigate(['/']);
+        },
+        (error) => {
+          console.error('Error deleting note:', error);
+        }
+      );
+    }
   }
 
 }

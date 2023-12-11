@@ -18,9 +18,13 @@ export class ListComponent implements OnInit{
   }
 
   fetchData() {
-    this.logbookService.list().subscribe((result) => {
-      this.notes = result;
-    })
+    this.logbookService.list().subscribe(
+      (result) => {
+        this.notes = result;
+      },
+      (error) => {
+        console.error("Error fetching notes ", error);
+      })
   }
 
 }
