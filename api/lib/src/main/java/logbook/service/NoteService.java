@@ -117,6 +117,7 @@ public class NoteService {
 	      return noteRepository.findById(id).map(note -> {
 	    	          note.setTitle(newNote.getTitle());
 	    	          note.setContent(newNote.getContent());
+	    	          note.setTimestamp(newNote.getTimestamp());
 	    	          return noteRepository.save(note);
 	    	        })
 	    	        .orElseGet(() -> {

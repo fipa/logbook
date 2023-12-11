@@ -1,17 +1,21 @@
-<div *ngIf="task; else noTask">
-    <div class="row">
-        <div class="col-md-4">
-            {{ task.title }}
+<div *ngIf="note; else noNote">
+
+    <form (submit)="submitForm()">
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" [(ngModel)]="note.title" class="form-control">
         </div>
-        <div class="col-md-4">
-            {{ task.content }}
+    
+        <div class="form-group">
+          <label for="content">Content:</label>
+          <textarea id="content" name="content" [(ngModel)]="note.content" class="form-control"></textarea>
         </div>
-        <div class="col-md-4">
-            {{ task.timestamp }}
-        </div>
-    </div>
+    
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+
 </div>
 
-<ng-template #noTask>
-    <p>No task selected.</p>
+<ng-template #noNote>
+    <p>No note selected.</p>
 </ng-template>

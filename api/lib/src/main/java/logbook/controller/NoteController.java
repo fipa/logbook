@@ -1,5 +1,6 @@
 package logbook.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,8 @@ public class NoteController {
     
     @PutMapping("/notes/{id}")
     Note replaceNote(@RequestBody Note newNote, @PathVariable Long id) {
-    	return noteService.replaceNote(newNote,id);   	
+    	newNote.setTimestamp(LocalDateTime.now()); // podria ser un buen ejercicio, eliminar esta linea y que la prueba falle
+    	return noteService.replaceNote(newNote,id);
     }
 
     @DeleteMapping("/notes/{id}")
