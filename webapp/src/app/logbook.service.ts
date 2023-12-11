@@ -7,12 +7,12 @@ import { Observable } from 'rxjs';
 })
 
 export class LogbookService {
-  private apiUrl = "https://jsonplaceholder.typicode.com/";
+  private apiUrl = "http://localhost:8080/notes";
 
   constructor(private http: HttpClient) { }
 
   list(): Observable<any> { // TODO podria ser Task en vez de any
-    return this.http.get<any>(this.apiUrl + "todos", { responseType: 'json'});
+    return this.http.get<any>(this.apiUrl, { responseType: 'json'});
   }
 
 }
