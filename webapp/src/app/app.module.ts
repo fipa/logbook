@@ -7,16 +7,18 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { NoteComponent } from './note/note.component';
+import { DictionaryComponent } from './dictionary/dictionary.component';
 import { ListComponent } from './list/list.component';
+import { NoteComponent } from './note/note.component';
 import { LogbookService } from './services/logbook.service';
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        NoteComponent,
+        DictionaryComponent,
         ListComponent,
+        NoteComponent
     ],
     imports: [
         AppRoutingModule,
