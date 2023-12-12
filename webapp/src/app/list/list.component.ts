@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { LogbookService } from '../services/logbook.service';
+import { Note } from '../models/note.model';
 
 @Component({
   selector: 'app-list',
@@ -9,7 +10,7 @@ import { LogbookService } from '../services/logbook.service';
 })
 
 export class ListComponent implements OnInit{
-  notes: any;
+  notes: Note[] = [];
 
   constructor(private logbookService: LogbookService) {}
   
