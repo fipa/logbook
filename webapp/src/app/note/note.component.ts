@@ -11,7 +11,7 @@ import { Note } from '../models/note.model';
 })
 
 export class NoteComponent implements OnInit{
-   note: Note = { id: 0, title: '', content: '', timestamp: new Date()};
+  note: Note = { id: 0, title: '', content: '', timestamp: new Date()};
 
   constructor(
     private route: ActivatedRoute,
