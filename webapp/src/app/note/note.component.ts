@@ -22,14 +22,13 @@ export class NoteComponent implements OnInit{
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       if (params['id']) {
-        this.note.id = params['id'];
-        this.fetchData();
+        this.fetchData(params['id']);
       }
     });
   }
 
-  fetchData() {
-    this.logbookService.note(this.note.id).subscribe(
+  fetchData(noteId: number) {
+    this.logbookService.note(noteId).subscribe(
       (result) => {
         this.note = result;
       },
