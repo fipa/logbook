@@ -19,7 +19,6 @@ export class DictionaryComponent implements OnInit{
   }
 
   fetchData() {
-    console.log("on fetch dictionary");
     this.logbookService.dictionary().subscribe(
       (result) => {
         console.log("words ", result);
@@ -27,7 +26,7 @@ export class DictionaryComponent implements OnInit{
         this.wordKeys = Object.keys(result);
       },
       (error) => {
-        console.error("Error fetching notes ", error);
+        console.error("Error fetching dictionary ", error);
       })
   }
 

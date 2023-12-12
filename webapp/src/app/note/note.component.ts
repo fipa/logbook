@@ -20,7 +20,7 @@ export class NoteComponent implements OnInit{
   ) {}
   
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       if (params['id']) {
         this.note.id = params['id'];
         this.fetchData();
@@ -35,7 +35,7 @@ export class NoteComponent implements OnInit{
       },
       (error) => {
         console.error(`Error fetching note ${this.note.id}`, error);
-      })      
+      })
   }
 
   submitForm(): void {
