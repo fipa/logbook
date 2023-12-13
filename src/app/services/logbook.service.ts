@@ -11,6 +11,7 @@ import { Note } from '../models/note.model';
 export class LogbookService {
 
   private apiUrl = "http://localhost:8080";
+  //private apiUrl = "http://logbook.eastus.azurecontainer.io:8080";
   private notesUrl = this.apiUrl + "/notes";
 
   constructor(private http: HttpClient) { }
